@@ -3,9 +3,8 @@ import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import { MainContainer, MessageBox } from '../../components';
+import { MainContainer, MessageList } from '../../components';
 import Icon from '@material-ui/core/Icon';
-import List from '@material-ui/core/List';
 
 const styles = {
   card: {
@@ -15,7 +14,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    maxHeight: '800px'
+    maxHeight: 800,
+    height: 800
   },
   textField: {
     marginRight: 20
@@ -28,19 +28,12 @@ const ChatPageUI = (props) => {
     <MainContainer>
       <Card className={classes.card}>
         <div style={{ flex: 1, overflow: 'auto', boxShadow: 'none' }}>
-          <List style={{ padding: 0, margin: 0 }}>
-            {
-              messages.map((each) => (
-                <MessageBox {...each} />
-              ))
-            }
-          </List>
+          <MessageList messages={messages} />
         </div>
         <div style={{
           flexDirection: 'row',
           display: 'flex',
           alignItems: 'center',
-          height: 500
         }}>
           <TextField
             style={{ flex: 1 }}
