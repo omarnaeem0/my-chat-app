@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { MainContainer, MessageList } from '../../components';
@@ -8,8 +9,6 @@ import Icon from '@material-ui/core/Icon';
 
 const styles = {
   card: {
-    minWidth: 350,
-    maxWidth: 600,
     padding: 20,
     display: 'flex',
     flexDirection: 'column',
@@ -26,23 +25,28 @@ class ChatPageUI extends React.Component {
   scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
-  
+
   componentDidMount() {
     this.scrollToBottom();
   }
-  
+
   componentDidUpdate() {
     this.scrollToBottom();
   }
-  render(){
+  render() {
     const { classes, message, messages, handleChange, onEnter, onKeyPress } = this.props;
     return (
       <MainContainer>
         <Card className={classes.card}>
+          <Tooltip title="Logout">
+            <Button onClick={() => this.props.history.push('./login')} variant="fab" style={{ backgroundColor: 'rgb(53, 150, 216)', marginBottom: 20 }}>
+              <Icon style={{ color: 'white' }}>logout</Icon>
+            </Button>
+          </Tooltip>
           <div style={{ flex: 1, overflow: 'auto', boxShadow: 'none' }}>
             <MessageList messages={messages} />
-            <div style={{ float:"left", clear: "both" }}
-                ref={(el) => { this.messagesEnd = el; }}>
+            <div style={{ float: "left", clear: "both" }}
+              ref={(el) => { this.messagesEnd = el; }}>
             </div>
           </div>
           <div style={{
@@ -62,9 +66,11 @@ class ChatPageUI extends React.Component {
               variant="outlined"
               onKeyPress={onKeyPress}
             />
-            <Button onClick={onEnter} variant="fab" style={{ backgroundColor: 'rgb(53, 150, 216)' }}>
-              <Icon style={{ color: 'white' }}>send</Icon>
-            </Button>
+            <Tooltip title="Send">
+              <Button onClick={onEnter} variant="fab" style={{ backgroundColor: 'rgb(53, 150, 216)' }}>
+                <Icon style={{ color: 'white' }}>send</Icon>
+              </Button>
+            </Tooltip>
           </div>
         </Card>
       </MainContainer>

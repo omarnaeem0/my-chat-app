@@ -44,6 +44,7 @@ class ChatPageContainer extends React.Component {
   render() {
     return (
       <ChatUI
+        {...this.props}
         {...this.state}
         messages={this.props.messages}
         handleChange={this.handleChange}
