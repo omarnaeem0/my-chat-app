@@ -22,37 +22,53 @@ const styles = {
   }
 };
 
-const ChatPageUI = (props) => {
-  const { classes, message, messages, handleChange, onEnter, onKeyPress } = props;
-  return (
-    <MainContainer>
-      <Card className={classes.card}>
-        <div style={{ flex: 1, overflow: 'auto', boxShadow: 'none' }}>
-          <MessageList messages={messages} />
-        </div>
-        <div style={{
-          flexDirection: 'row',
-          display: 'flex',
-          alignItems: 'center',
-        }}>
-          <TextField
-            style={{ flex: 1 }}
-            className={classes.textField}
-            id="outlined-name"
-            label="Message"
-            value={message}
-            onChange={handleChange('message')}
-            margin="normal"
-            fullWidth
-            variant="outlined"
-            onKeyPress={onKeyPress}
-          />
-          <Button onClick={onEnter} variant="fab" style={{ backgroundColor: 'rgb(53, 150, 216)' }}>
-            <Icon style={{ color: 'white' }}>send</Icon>
-          </Button>
-        </div>
-      </Card>
-    </MainContainer>
-  )
+class ChatPageUI extends React.Component {
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+  
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+  
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+  render(){
+    const { classes, message, messages, handleChange, onEnter, onKeyPress } = this.props;
+    return (
+      <MainContainer>
+        <Card className={classes.card}>
+          <div style={{ flex: 1, overflow: 'auto', boxShadow: 'none' }}>
+            <MessageList messages={messages} />
+            <div style={{ float:"left", clear: "both" }}
+                ref={(el) => { this.messagesEnd = el; }}>
+            </div>
+          </div>
+          <div style={{
+            flexDirection: 'row',
+            display: 'flex',
+            alignItems: 'center',
+          }}>
+            <TextField
+              style={{ flex: 1 }}
+              className={classes.textField}
+              id="outlined-name"
+              label="Message"
+              value={message}
+              onChange={handleChange('message')}
+              margin="normal"
+              fullWidth
+              variant="outlined"
+              onKeyPress={onKeyPress}
+            />
+            <Button onClick={onEnter} variant="fab" style={{ backgroundColor: 'rgb(53, 150, 216)' }}>
+              <Icon style={{ color: 'white' }}>send</Icon>
+            </Button>
+          </div>
+        </Card>
+      </MainContainer>
+    )
+  }
 }
 export default withStyles(styles)(ChatPageUI);
