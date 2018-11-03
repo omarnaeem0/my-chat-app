@@ -70,7 +70,7 @@ const LoginPageUI = (props) => {
           {error}
         </Typography>
         <Button
-          variant="outlined"
+          style={{ backgroundColor: 'rgb(53, 150, 216)', color: 'white' }}
           size="large"
           className={classes.button}
           onClick={onClick}
