@@ -7,8 +7,8 @@ export const MessageList = (props) => {
   return (
     <List style={{ padding: 0, margin: 0 }} {...props}>
       {
-        messages !== null ? messages.map((each) => (
-          <MessageBox {...each} />
+        messages !== null ? messages.map((each, index) => (
+          <MessageBox key={index} {...each} />
         )) : null
       }
     </List>
