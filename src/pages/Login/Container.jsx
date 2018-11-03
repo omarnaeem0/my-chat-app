@@ -29,7 +29,6 @@ class LoginPageContainer extends React.Component {
     }
   }
   render() {
-    const { classes } = this.props;
     return (
       <LoginUI {...this.state} onClick={this.onClick} handleChange={this.handleChange}/>
     )

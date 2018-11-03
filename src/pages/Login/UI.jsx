@@ -6,11 +6,10 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
-import MainContainer from './../../components/MainContainer';
+import { MainContainer } from './../../components';
 
 const styles = {
   card: {
-    minWidth: 350,
     padding: 40,
     display: 'flex',
     flexDirection: 'column',
