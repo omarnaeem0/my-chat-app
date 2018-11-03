@@ -13,6 +13,7 @@ const history = createBrowserHistory();
 
 class App extends Component {
   render() {
+    const loggedIn = JSON.parse(localStorage.getItem('loggedIn'));
     return (
       <Provider store={store} >
         <Router history={history}>
@@ -23,7 +24,7 @@ class App extends Component {
           }}>
             <Route exact path={'/login'} component={LoginPage} />
             <Route exact path={'/home'} component={ChatPage} />
-            <Redirect to={'/login'} />
+            <Redirect to={loggedIn ? '/home' : '/login'} />
           </div>
         </Router>
       </Provider>

@@ -19,7 +19,8 @@ class LoginPageContainer extends React.Component {
   }
   onClick() {
     if (this.state.userName === 'admin' && this.state.password === 'admin') {
-      this.props.history.push('/home')
+      this.props.history.push('/home');
+      localStorage.setItem('loggedIn', JSON.stringify(true));
     } else {
       this.setState({ 'error': 'Incorrect User Name / Password' });
       setTimeout(() => {

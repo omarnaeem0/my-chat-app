@@ -34,12 +34,12 @@ class ChatPageUI extends React.Component {
     this.scrollToBottom();
   }
   render() {
-    const { classes, message, messages, handleChange, onEnter, onKeyPress } = this.props;
+    const { classes, message, messages, handleChange, onEnter, onKeyPress, onLogout } = this.props;
     return (
       <MainContainer>
         <Card className={classes.card}>
           <Tooltip title="Logout">
-            <Button onClick={() => this.props.history.push('./login')} variant="fab" style={{ backgroundColor: 'rgb(53, 150, 216)', marginBottom: 20 }}>
+            <Button onClick={onLogout} variant="fab" style={{ backgroundColor: 'rgb(53, 150, 216)', marginBottom: 20 }}>
               <Icon style={{ color: 'white' }}>logout</Icon>
             </Button>
           </Tooltip>

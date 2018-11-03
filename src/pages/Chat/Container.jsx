@@ -12,7 +12,7 @@ class ChatPageContainer extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.onEnter = this.onEnter.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
-
+    this.onLogout = this.onLogout.bind(this);
   }
   componentDidMount() {
     const intervalId = setInterval(() => {
@@ -36,6 +36,10 @@ class ChatPageContainer extends React.Component {
       });
     }
   }
+  onLogout(){
+    this.props.history.push('./login');
+    localStorage.setItem('loggedIn', JSON.stringify(false));
+  }
   onKeyPress(ev) {
     if (ev.key === 'Enter') {
       this.onEnter(false)();
@@ -50,6 +54,7 @@ class ChatPageContainer extends React.Component {
         handleChange={this.handleChange}
         onEnter={this.onEnter(false)}
         onKeyPress={this.onKeyPress}
+        onLogout={this.onLogout}
       />
     )
   }
