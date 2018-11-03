@@ -37,7 +37,7 @@ class ChatPageContainer extends React.Component {
     }
   }
   onLogout(){
-    this.props.history.push('./login');
+    this.props.history.push('/login');
     localStorage.setItem('loggedIn', JSON.stringify(false));
   }
   onKeyPress(ev) {
